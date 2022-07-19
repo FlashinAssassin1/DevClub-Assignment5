@@ -1,5 +1,5 @@
 from django.urls import include, path
-from .views import register,home,profile
+from .views import register,home,profile,StudentCourseListView
 from django.contrib.auth import views as auth_views
 
 urlpatterns = [

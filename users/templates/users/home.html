@@ -3,10 +3,18 @@
     <h2>FlashLearn LMS for 2022</h2>
     {% if user.is_authenticated %}
         {% if user.role == 1 %}
-            <h3>Courses List</h3>
+            <h4>Courses Enrolled List</h4>
         {% else %}
-            <h3>Control Page</h3>
+            <h4>Managed Courses List</h4>
         {% endif %}
+        {% for course in courses %}
+            <article class="media content-section">
+                <div class="media-body">
+                    <h2><a class="article-title" href="#">{{ course.code }}</a></h2>
+                    <p class="article-content">{{ course.title }}</p>
+                </div>
+            </article>
+        {% endfor %}
     {% else %}
         <p>Flashlearn was created by Santhosh Deshineni with the aim to allow all students across the world to register for free courses by enthusiastic teachers!</p>
     {% endif %}

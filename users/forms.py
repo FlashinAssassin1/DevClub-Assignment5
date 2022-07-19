@@ -1,9 +1,8 @@
 from email.policy import default
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import User
 
-from users.models import CustomUser
+from users.models import CustomUser,Profile
 
 GEEKS_CHOICES =(
     ("1", "Student"),
@@ -15,7 +14,20 @@ class UserRegisterForm(UserCreationForm):
     first_name = forms.CharField(max_length=150)
     last_name = forms.CharField(max_length=150)
     email = forms.EmailField()
+    
 
     class Meta():
         model = CustomUser
-        fields = ['username','role','first_name','last_name','email','password1','password2']
+        fields = ['username','role','first_name','last_name','description','email','password1','password2']
+
+class UserUpdateForm(forms.ModelForm):
+    email = forms.EmailField()
+
+    class Meta():
+        model = CustomUser
+        fields = ['username','email','description']    
+
+class ProfileUpdateForm(forms.ModelForm):
+     class Meta():
+        model = Profile
+        fields = ['image']
