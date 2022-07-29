@@ -1,0 +1,54 @@
+{% extends "users/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<section style="background-color: #eee;">
+    <div class="container py-5">
+  
+      <div class="row d-flex justify-content-center">
+        <div class="col-md-10 col-lg-12 col-xl-9">
+  
+          <div class="card" id="chat2">
+            <div class="card-header d-flex justify-content-between align-items-center p-3">
+              <h5 class="mb-0">Chat</h5>
+            </div>
+            <div class="card-body overflow-auto" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px">
+                {% for message in chatlist %}
+                {% if message.sender == user%}
+              <div class="d-flex flex-row justify-content-start">
+                <img class="rounded-circle" src="{{ user.profile.image.url }}" alt="avatar 1" style="height: 45px;width: 45px">
+                <div>
+                  <p class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">{{ message.content }}</p>
+                  <p class="small ms-3 mb-3 rounded-3 text-muted">{{ message.date_sent|date:"D, d F Y, f A"}}</p>
+                </div>
+              </div>
+              {% else %}
+              <div class="d-flex flex-row justify-content-end mb-4 pt-1">
+                <div>
+                  <p class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">{{ message.content }}</p>
+                  <p class="small me-3 mb-3 rounded-3 text-muted d-flex justify-content-end">{{ message.date_sent|date:"D, d F Y, f A"}}</p>
+                </div>
+                <img class="rounded-circle" src="{{ message.sender.profile.image.url }}" alt="avatar 1" style="height: 45px;width: 45px">
+              </div>
+              {% endif %}
+              {% endfor %}
+  
+            </div>
+          </div>
+          <div class="content-section">
+            <form method="post">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    {{ form|crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-outline-info" type="submit">Send Message</button>
+                </div>
+            </form>
+        </div>
+  
+        </div>
+      </div>
+  
+    </div>
+  </section>
+{% endblock content%}

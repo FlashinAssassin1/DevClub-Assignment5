@@ -1,0 +1,74 @@
+{% extends "users/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% if user in coursepeople %}
+      <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ object.author.profile.image.url }}">
+          <div class="media-body">
+              <div class="article-metadata">
+                  <a class="mr-2" href="{% url 'profile' object.author.pk %}">{{ object.author }}</a>
+                  <small class="text-muted">{{ object.date_posted|date:"D, d F Y, f A" }}</small>
+                  {% if object.author == user %}
+                      <div>
+                          <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'post-update' object.id %}">Update</a>
+                          <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'post-delete' object.id %}">Delete</a>
+                      </div>
+                  {% endif %}
+              </div>
+              <h2 class="article-title">{{ object.title }}</h2>
+              <p class="article-content">{{ object.content }}</p>
+              {% if object.course %}
+                <a href="{% url 'post-list' object.course.pk %}" style="display: block;" class="text-right">Go Back to List</a>
+              {% else %}
+                <a href="{% url 'post-list' 0 %}" style="display: block;" class="text-right">Go Back to Forum</a>
+              {% endif %}
+          </div>
+      </article>
+      <h4>Replies:</h4>
+      {% for reply in replies %}
+        <article class="media content-section">
+          <img class="rounded-circle article-img" src="{{ reply.author.profile.image.url }}">
+          <div class="media-body">
+              <div class="article-metadata">
+                  <a class="mr-2" href="{% url 'profile' object.author.pk %}">{{ reply.author }}</a>
+                  <small class="text-muted">{{ reply.date_posted|date:"D, d F Y, f A" }}</small>
+              </div>
+              <h4 class="article-title">{{ reply.title }}</h4>
+              <p class="article-content">{{ reply.content }}</p>
+          </div>
+        </article>
+      {% endfor %}
+
+      <div class="accordion" id="accordionExample">
+          <div class="card">
+            <div class="card-header" id="headingOne" style="margin-bottom: 1px;">
+              <h2 class="mb-0">
+                <button class="btn btn-outline-info" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  Add a Reply
+                </button>
+              </h2>
+            </div>
+        
+            <div id="collapseOne" class="collapse hide" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body">
+                <div class="content-section">
+                  <form method="post">
+                      {% csrf_token %}
+                      <fieldset class="form-group">
+                          {{ form|crispy }}
+                      </fieldset>
+                      <div class="form-group">
+                          <button class="btn btn-outline-info" type="submit">Add Reply</button>
+                      </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <article class="media content-section">
+          You are not enrolled in this course!
+        </article>
+      {% endif %}
+{% endblock content%}

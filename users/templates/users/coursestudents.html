@@ -1,0 +1,10 @@
+{% extends "users/base.html" %}
+{% block content %}
+<h3>Students enrolled in {{ course.code }}</h3>
+{% for person in students %}
+    <div style="margin-bottom: 10px;">
+    <img class="rounded-circle" src="{{ person.profile.image.url }}" alt="" style="width: 30px;height: 30px;margin-right: 10px;">
+    <a href="{% url 'profile' person.pk %}">{{ person }}</a>
+    </div>
+{% endfor %}
+{% endblock content%}

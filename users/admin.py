@@ -9,7 +9,7 @@ from .models import CustomUser, Profile
 
 class CustomUserAdmin(UserAdmin):
     list_display = (
-        'username', 'email', 'first_name', 'last_name','role',
+        'username', 'email', 'first_name', 'last_name','type',
         )
 
 admin.site.register(CustomUser, CustomUserAdmin)

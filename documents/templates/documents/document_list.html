@@ -1,0 +1,38 @@
+{% extends "users/base.html" %}
+{% block content %}
+{% if user in coursepeople %}
+    <h2>Lecture Notes</h2>
+    {% if user.type == 2 %}
+        <a class="btn btn-outline-secondary btn-sm mt-1 mb-1" href="{% url 'document-upload' course.pk %}">Upload New Document</a>
+    {% endif %}
+    <br><br>
+    <table class="table table-bordered table-hover bg-white">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col" class="text-center">File Title</th>
+            <th scope="col" class="text-center">File Title</th>
+            <th scope="col" class="text-center">Last Modified</th>
+            <th scope="col" class="text-center">Size</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for doc in documents %}
+            <tr>
+                <td><a href="{% url 'document-detail' course.pk doc.pk %}">{{ doc.visible_name }}</a></td>
+                <td scope="row">
+                    <img src="{{ doc.filetype.url }}" alt="" style="width: 30px;margin-right: 10px;">
+                    <a href="{{ doc.file.url }}" target="_blank">{{ doc.actualfilename }}</a>
+                </td>
+                <td>{{ doc.date_modified|date:"D, d F Y, f A" }}</td>
+                <td style="white-space: nowrap">{{ doc.filesize }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% else %}
+    <article class="media content-section">
+        You are not enrolled in this course!
+    </article>
+{% endif %}
+
+{% endblock content%}

@@ -1,0 +1,28 @@
+{% extends "users/base.html" %}
+{% block content %}
+        <article class="media content-section">
+            <div class="media-body">
+                {% if user == object.author %}
+                    <div class="article-metadata">
+                        <div>
+                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'document-update' object.course.pk object.pk %}">Update Document</a>
+                            <a class="btn btn-danger btn-sm mt-1 mb-1" href="{% url 'document-delete' object.course.pk object.pk %}">Delete Document</a>
+                        </div>
+                    </div>
+                {% endif %}
+                <h4 class="article-title">{{ object.visible_name }}</h4>
+                <img src="{{ object.filetype.url }}" alt="" style="float: left;width: 30px;margin-right: 10px;">
+                <p class="article-content"><a href="{{ object.file.url }}" target="_blank">{{ object.actualfilename }}</a></p>
+                <p class="text-secondary">
+                    <em>Uploaded By:</em> <a href="{% url 'profile' object.author.pk %}">{{ object.author }}</a>
+                    <br>
+                    <em>Course:</em> <a href="{% url 'course-detail' object.course.pk %}">{{ object.course }}</a>
+                    <br>
+                    <em>Upload Date:</em> {{ object.date_created }}
+                    <br>
+                    <em>Last Modified:</em> {{ object.date_modified }} 
+                </p>
+            </div>
+        </article>
+{% endblock content%}
+ 
