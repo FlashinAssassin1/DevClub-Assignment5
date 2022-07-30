@@ -20,7 +20,7 @@ class Migration(migrations.Migration):
             name='Quiz',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(default='New Quiz', max_length=50)),
+                ('title', models.CharField(default='New Quiz', max_length=60)),
                 ('weightage', models.FloatField(verbose_name='Weightage(in %)')),
                 ('duration', models.IntegerField(verbose_name='Duration in minutes')),
                 ('startafter_time', models.DateTimeField(verbose_name='Start After Time: (format:dd-mm-yyyy HH-MM')),
