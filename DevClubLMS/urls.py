@@ -17,12 +17,15 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
+from grades.views import gradeview
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('users.urls')),
     path('communication/',include('communication.urls')),
     path('docs/',include('documents.urls')),
+    path('quiz/',include('quizzes.urls')),
+    path('gradeview/<int:courseid>/',gradeview,name='grade-view'),
 ]
 
 urlpatterns  += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

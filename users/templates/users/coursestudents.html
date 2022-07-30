@@ -1,10 +1,28 @@
 {% extends "users/base.html" %}
 {% block content %}
-<h3>Students enrolled in {{ course.code }}</h3>
-{% for person in students %}
+
+
     <div style="margin-bottom: 10px;">
-    <img class="rounded-circle" src="{{ person.profile.image.url }}" alt="" style="width: 30px;height: 30px;margin-right: 10px;">
-    <a href="{% url 'profile' person.pk %}">{{ person }}</a>
     </div>
-{% endfor %}
+
+    <table class="table table-bordered table-hover bg-white">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col" class="text-center"><h3 style="color: white;">Students enrolled in {{ course.code }}</h3></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for person in students %}
+            <tr>
+                <td>
+                    <img class="rounded-circle" src="{{ person.profile.image.url }}" alt="" style="width: 30px;height: 30px;margin-right: 10px;">
+                    <a href="{% url 'profile' person.pk %}">{{ person }}</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
 {% endblock content%}
+
+

@@ -92,3 +92,5 @@ def documentlist(request,courseid):
     return render(request,'documents/document_list.html',context)
 
 
+
+

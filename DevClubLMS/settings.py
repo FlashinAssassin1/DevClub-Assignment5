@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'grades.apps.GradesConfig',
+    'quizzes.apps.QuizzesConfig',
     'documents.apps.DocumentsConfig',
     'communication.apps.CommunicationConfig',
     'users.apps.UsersConfig',

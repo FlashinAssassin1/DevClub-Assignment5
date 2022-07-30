@@ -5,6 +5,16 @@ from django.utils import timezone
 import os
 from django.urls import reverse
 
+# class Folder(models.Model):
+#     course = models.ForeignKey(Course,on_delete=models.CASCADE)
+#     date_created = models.DateTimeField(auto_now_add=True)
+#     date_modified = models.DateTimeField(auto_now=True)
+#     author = models.ForeignKey(CustomUser,on_delete=models.PROTECT)
+#     visible_name = models.CharField(max_length=50)
+
+#     def __str__(self):
+#         return self.visible_name
+
 class Document(models.Model):
     file = models.FileField(upload_to='lecture_notes')
     course = models.ForeignKey(Course,on_delete=models.CASCADE)
@@ -38,3 +48,4 @@ class Document(models.Model):
     @property
     def actualfilename(self):
         return os.path.basename(self.file.name)
+

@@ -1,0 +1,46 @@
+{% extends "users/base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+    {% if user.type == 1 %}
+        {% if attempted %}
+            <div class="card-body">
+                <h5 class="card-title">Score: {{ attempt.score }} marks</h5>
+
+                <p class="card-text">Percentage: {{attempt.percentage}}%</p>
+                <p class="card-text">Time Taken: {{ minutes }} minutes {{ seconds }} seconds</p>
+                <p class="card-text">Correct answers: {{attempt.correct_answers}}</p>
+                <p class="card-text">Incorrect answers: {{attempt.incorrect_answers}}</p>
+                <p class="card-text">Total marks: {{attempt.total_marks}}</p>
+                <h5>All the best for the next quiz!</h5>
+            </div>
+        {% else %}
+            <div class="card-body">
+                <h4 class="card-title">{{ quiz.title }}</h4>
+                <p class="card-text">Start After: {{quiz.startafter_time|date:"l, d F Y, f A"}}</p>
+                <p>Start Before: {{quiz.startbefore_time|date:"l, d F Y, f A"}}</p>
+                <a class="btn btn-outline-info" href="{% url 'quiz-attempt' quiz.course.pk quiz.pk %}">Start</a>
+            </div>
+        {% endif %}
+    {% else %}
+    <div class="content-section">
+        <h4 class="card-title">{{ quiz.title }}</h4>
+        <p class="card-text">Start After: {{quiz.startafter_time|date:"l, d F Y, f A"}}</p>
+        <p>Start Before: {{quiz.startbefore_time|date:"l, d F Y, f A"}}</p>
+        {% for q in questions %}
+        Q{{forloop.counter}}: {{ q.question }}<br>
+        {% endfor %}
+    </div>
+    <div class="content-section">
+        <form method="post">
+            {% csrf_token %}
+            <fieldset class="form-group">
+                <legend class="border-bottom mb-4">Add Question</legend>
+                {{ form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit">Add</button>
+            </div>
+        </form>
+    </div>
+    {% endif %}
+{% endblock content%}

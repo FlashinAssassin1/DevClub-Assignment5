@@ -1,0 +1,23 @@
+{% extends "users/base.html" %}
+{% block content %}
+    <h2>List of Quizzes</h2>
+    <br><br>
+    <table class="table table-bordered table-hover bg-white">
+        <thead class="thead-dark">
+            <tr>
+            <th scope="col" class="text-center">Quiz Title</th>
+            <th scope="col" class="text-center">Start After</th>
+            <th scope="col" class="text-center">Start Before</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for quiz in quizzes %}
+            <tr>
+                <td><a href="{% url 'quiz-view' quiz.course.pk quiz.pk %}">{{ quiz.title }}</a></td>
+                <td>{{ quiz.startafter_time|date:"D, d F Y, f A" }}</td>
+                <td>{{ quiz.startbefore_time|date:"D, d F Y, f A" }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock content%}

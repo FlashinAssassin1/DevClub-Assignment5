@@ -1,5 +1,6 @@
 body {
-    background-color: #F2EFEE;
+    background-image: url('download.png');
+    background-size: cover;
     color: #333333;
     margin-top: 5rem;
   }

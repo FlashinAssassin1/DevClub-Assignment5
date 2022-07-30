@@ -1,0 +1,28 @@
+{% extends "users/base.html" %}
+{% block content %}
+    {% if user in coursestudents %}
+        <article class="media content-section">
+            <div class="media-body">
+                <h2 class="article-title">{{ course.code }}</h2>
+                <h5><p class="article-content"><em>Title:</em> {{ course.title }}</p></h5>
+            </div>
+        </article>
+        <article class="media content-section">
+            <div class="media-body">
+                <h5>Grade Details</h5>
+                <p>Your Current Net: {{ grade.percentage }}%</p>
+                <p>Current Class Average: {{ average }}%</p>
+                <p>Class Maximum: {{ maximum }}%</p>
+                {% if grade.grade %}
+                <h4>Your Final Grade: {{ grade.grade }}</h4>
+                {% else %}
+                <h4>Final Grade not uploaded</h4>
+                {% endif %}
+            </div>
+        </article>
+    {% else %}
+        <article class="media content-section">
+            You are not enrolled in this course or you are a teacher!
+        </article>
+    {% endif %}
+{% endblock content %}

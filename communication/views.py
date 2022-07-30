@@ -148,10 +148,16 @@ def messageslist(request,personid):
 
 @login_required
 def search(request):
+    recentpeople = []
+    for message in  request.user.received_messages.all().order_by('-date_sent')[0:3]:
+        recentpeople.append(message.sender)
+    
+    recentpeople = list(set(recentpeople))
+
     if request.method == 'POST':
         searched = request.POST['searched']
         queryset = CustomUser.objects.annotate(fullname=Concat('first_name', Value(' '), 'last_name'))
         result = queryset.filter(fullname__contains=searched)
-        return render(request,'communication/search.html',{'searched': searched,'people': result})
+        return render(request,'communication/search.html',{'searched': searched,'people': result,'recentpeople':recentpeople})
     else:
-        return render(request,'communication/search.html',{})
+        return render(request,'communication/search.html',{'recentpeople':recentpeople})

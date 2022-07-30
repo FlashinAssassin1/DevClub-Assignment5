@@ -1,5 +1,5 @@
 from django.urls import path
-from documents.views import DocumentCreateView, DocumentUpdateView, DocumentDeleteView, DocumentDetailView, DocumentListView, documentlist
+from documents.views import DocumentCreateView, DocumentUpdateView, DocumentDeleteView, DocumentDetailView, documentlist
 
 urlpatterns = [
     path('upload/<int:courseid>/',DocumentCreateView.as_view(),name='document-upload'),

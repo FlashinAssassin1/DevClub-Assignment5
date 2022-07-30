@@ -1,4 +1,5 @@
 {% extends "users/base.html" %}
+{% load static %} 
 {% block content %}
     <h2>FlashLearn LMS for 2022</h2>
     {% if user.is_authenticated %}
@@ -39,5 +40,6 @@
         {% endif %}
     {% else %}
         <p>Flashlearn was created by Santhosh Deshineni with the aim to allow all students across the world to register for free courses by enthusiastic teachers!</p>
+        
     {% endif %}
 {% endblock content%}

@@ -7,6 +7,7 @@
                     {% if user in courseteachers %}
                         <div>
                             <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'course-update' course.pk %}">Update Course Info</a>
+                            <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{% url 'quiz-create' course.pk %}">Create New Quiz</a>
                         </div>
                     {% elif user.type == 3 %}
                         <div>
@@ -29,11 +30,11 @@
                 <h5>Quick Links</h5>
                 <a href="{% url 'course-students' course.pk %}" class="mr-2">Students in Course</a>
                 <br>
-                <a href="#" class="mr-2">Assessment Grades</a>
+                <a href="{% url 'grade-view' course.pk %}" class="mr-2">Course Grades</a>
                 <br>
                 <a href="{% url 'document-list' course.pk %}" class="mr-2">Lecture Notes</a>
                 <br>
-                <a href="#" class="mr-2">Quizzes</a>
+                <a href="{% url 'quiz-list' course.pk %}" class="mr-2">Quizzes</a>
                 <br>
                 <a href="{% url 'post-list' course.pk %}" class="mr-2">Course-Wide Forum</a>
             </div>

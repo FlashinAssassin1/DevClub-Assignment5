@@ -4,17 +4,49 @@
     <form method="post">
         {% csrf_token %}
         <div class="input-group">
-        <input type="search" class="form-control rounded" placeholder="Search by Name" aria-label="Search" aria-describedby="search-addon" name="searched">
+        <input type="search" class="form-control rounded" placeholder="Search for a User by Name" aria-label="Search" aria-describedby="search-addon" name="searched">
         <button type="submit" class="btn btn-outline-primary">Search</button>
         </div>
     </form>
 </div>
 {% if searched %}
-<h3>You searched for {{ searched }}</h3>
-{% for person in people %}
-    <img class="rounded-circle" src="{{ person.profile.image.url }}" alt="" style="width: 30px;height: 30px;margin-right: 10px;">
-    <a href="{% url 'profile' person.pk %}">{{ person }}</a>
-    <br><br>
-{% endfor %}
+<table class="table table-bordered table-hover bg-white">
+    <thead class="thead-dark">
+        <tr>
+        <th scope="col" class="text-center"><h5 style="color: white;">You searched for {{ searched }}</h5></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for person in people %}
+        <tr>
+            <td>
+                <img class="rounded-circle" src="{{ person.profile.image.url }}" alt="" style="width: 30px;height: 30px;margin-right: 10px;">
+                <a href="{% url 'profile' person.pk %}">{{ person }}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endif %}
+
+
+<table class="table table-bordered table-hover bg-white">
+    <thead class="thead-dark">
+        <tr>
+        <th scope="col" class="text-center"><h5 style="color: white;">Recently Received Messages from:</h5></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for person in recentpeople %}
+        <tr>
+            <td>
+                <img class="rounded-circle" src="{{ person.profile.image.url }}" alt="" style="width: 30px;height: 30px;margin-right: 10px;">
+                <a href="{% url 'chatlist' person.pk %}">{{ person }}</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
 {% endblock content%}
