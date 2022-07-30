@@ -35,11 +35,11 @@ class ProfileUpdateForm(forms.ModelForm):
 class CourseForm(forms.ModelForm):
 
     teachers = forms.ModelMultipleChoiceField(
-        queryset=CustomUser.objects.filter(type=2),
+        queryset=CustomUser.objects.filter(type=2).order_by('pk'),
         widget=forms.CheckboxSelectMultiple
     )
     students = forms.ModelMultipleChoiceField(
-        queryset=CustomUser.objects.filter(type=1),
+        queryset=CustomUser.objects.filter(type=1).order_by('pk'),
         widget=forms.CheckboxSelectMultiple
     )
 
