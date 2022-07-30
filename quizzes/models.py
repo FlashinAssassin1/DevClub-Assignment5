@@ -4,7 +4,7 @@ from users.models import Course, CustomUser
 from django.utils import timezone
 
 class Quiz(models.Model):
-    title = models.CharField(max_length=50,default="New Quiz")
+    # title = models.CharField(max_length=50,default="New Quiz")
     course = models.ForeignKey(Course,on_delete=models.CASCADE)
     weightage = models.FloatField("Weightage(in %)")
     duration = models.IntegerField("Duration in minutes")
