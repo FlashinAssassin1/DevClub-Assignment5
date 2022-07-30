@@ -7,7 +7,7 @@ class Quiz(models.Model):
     title = models.CharField(max_length=50,default="New Quiz")
     course = models.ForeignKey(Course,on_delete=models.CASCADE)
     weightage = models.FloatField("Weightage(in %)")
-    #duration = models.IntegerField("Duration in minutes")
+    duration = models.IntegerField("Duration in minutes")
     startafter_time = models.DateTimeField("Start After Time: (format:dd-mm-yyyy HH-MM")
     startbefore_time = models.DateTimeField("Start Before Time: (format:dd-mm-yyyy HH-MM")
 
