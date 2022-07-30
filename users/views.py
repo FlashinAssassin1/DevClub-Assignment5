@@ -45,7 +45,7 @@ class CourseListView(ListView):
     model = Course
     template_name = 'users/home.html' # app/model_viewtype.html
     context_object_name = 'courses'
-    paginate_by = 5
+    paginate_by = 4
 
     def get_queryset(self):
         currentuser = self.request.user
