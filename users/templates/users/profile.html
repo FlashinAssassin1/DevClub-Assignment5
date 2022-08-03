@@ -11,7 +11,7 @@
                     <br>
                     Description: {{ askeduser.description }}
                     <br>
-                    Unique ID: {{ askeduser.id }}
+                    Unique ID: {{ askeduser.date_joined|date:"y" }}{{ askedid }}
                     <br>
                     Last Login Time: {{ askeduser.last_login|date:"l, d F Y, f A"}}
                 </p>
