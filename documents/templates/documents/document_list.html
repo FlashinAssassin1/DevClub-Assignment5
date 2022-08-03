@@ -6,6 +6,7 @@
         <a class="btn btn-outline-secondary btn-sm mt-1 mb-1" href="{% url 'document-upload' course.pk %}">Upload New Document</a>
     {% endif %}
     <br><br>
+    {% if documents %}
     <table class="table table-bordered table-hover bg-white">
         <thead class="thead-light">
             <tr>
@@ -29,6 +30,7 @@
             {% endfor %}
         </tbody>
     </table>
+    {% endif %}
 {% else %}
     <article class="media content-section">
         You are not enrolled in this course!
