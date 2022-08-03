@@ -8,6 +8,7 @@
         {% endif %}
         <a class="btn btn-outline-secondary btn-sm mt-1 mb-1" href="{% url 'post-create' courseid %}">Create New Post</a>
         <br><br>
+        {% if posts %}
         <table class="table table-bordered table-hover bg-white">
             <thead class="thead-light">
                 <tr>
@@ -29,6 +30,7 @@
                 {% endfor %}
             </tbody>
         </table>
+        {% endif %}
         {% if is_paginated %}
 
             {% if page_obj.has_previous %}

@@ -2,6 +2,7 @@
 {% block content %}
     <h2>List of Quizzes</h2>
     <br><br>
+    {% if quizzes %}
     <table class="table table-bordered table-hover bg-white">
         <thead class="thead-light">
             <tr>
@@ -20,4 +21,5 @@
             {% endfor %}
         </tbody>
     </table>
+    {% endif %}
 {% endblock content%}
