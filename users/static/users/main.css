@@ -15,7 +15,8 @@ body {
   
   .bg-alpha {
     /* background-color: #0D638F; */
-      background-image: linear-gradient(100deg,#185abc,#4285f4,#185abc); 
+      /* background-image: linear-gradient(100deg,#185abc,#4285f4,#185abc);  */
+      background-color: #333333;
   }
   
   .site-header .navbar-nav .nav-link {
