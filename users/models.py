@@ -1,3 +1,4 @@
+from email.policy import default
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.urls import reverse
@@ -21,6 +22,7 @@ class Course(models.Model):
     code = models.CharField(max_length=6,unique=True)
     title = models.CharField(max_length=50)
     desc = models.TextField(max_length=1000,default='Base Text')
+    coursepic = models.ImageField(default='coursedefault.jpg',upload_to='course_pics')
     creator = models.ForeignKey(CustomUser,limit_choices_to={'type': 3},on_delete=models.PROTECT,related_name='created_courses')
     teachers = models.ManyToManyField(CustomUser,limit_choices_to={'type': 2},related_name='teachcourses')
     students = models.ManyToManyField(CustomUser,limit_choices_to={'type': 1},related_name='studycourses')

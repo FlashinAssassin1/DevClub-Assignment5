@@ -1,5 +1,6 @@
 {% extends "users/base.html" %}
 {% load crispy_forms_tags %}
+{% load markdown_extras %}
 {% block content %}
     {% if user in coursepeople %}
       <article class="media content-section">
@@ -16,7 +17,7 @@
                   {% endif %}
               </div>
               <h2 class="article-title">{{ object.title }}</h2>
-              <p class="article-content">{{ object.content }}</p>
+              <p class="article-content">{{ object.content | markdown | safe }}</p>
               {% if object.course %}
                 <a href="{% url 'post-list' object.course.pk %}" style="display: block;" class="text-right">Go Back to List</a>
               {% else %}
@@ -34,7 +35,7 @@
                   <small class="text-muted">{{ reply.date_posted|date:"D, d F Y, f A" }}</small>
               </div>
               <h4 class="article-title">{{ reply.title }}</h4>
-              <p class="article-content">{{ reply.content }}</p>
+              <p class="article-content">{{ reply.content | markdown | safe }}</p>
           </div>
         </article>
       {% endfor %}

@@ -50,4 +50,4 @@ class CourseForm(forms.ModelForm):
 class CourseTeacherForm(forms.ModelForm):
     class Meta():
         model = Course
-        fields = ['code','title','desc']
+        fields = ['code','title','desc','coursepic']

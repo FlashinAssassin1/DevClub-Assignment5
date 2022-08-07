@@ -32,7 +32,7 @@ class Question(models.Model):
 
 class QuizAttempt(models.Model):
     student = models.ForeignKey(CustomUser,on_delete=models.CASCADE)
-    quiz = models.OneToOneField(Quiz,on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz,on_delete=models.CASCADE)
     score = models.IntegerField()
     percentage = models.FloatField()
     time_taken = models.IntegerField()

@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import include, path
 from django.conf import settings
 from django.conf.urls.static import static
-from grades.views import gradeview
+from grades.views import gradeview, gradeupload
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +26,7 @@ urlpatterns = [
     path('docs/',include('documents.urls')),
     path('quiz/',include('quizzes.urls')),
     path('gradeview/<int:courseid>/',gradeview,name='grade-view'),
+    path('gradeview/upload/<int:courseid>/',gradeupload,name='grade-upload'),
 ]
 
 urlpatterns  += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

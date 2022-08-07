@@ -70,12 +70,14 @@ def quizview(request, courseid, pk):
         form = AddQuestionForm()
 
     try:
-        attempt = quiz.quizattempt
+        attempt = QuizAttempt.objects.filter(student=request.user,quiz=quiz).first()
         minutes = attempt.time_taken // 60
         seconds = attempt.time_taken % 60
         context = {'form': form, 'attempt': attempt, 'quiz': quiz,
                    'questions': questions, 'minutes': minutes, 'seconds': seconds,'attempted': True}
+        print('bye')
     except:
+        print('hi')
         context = {'form': form, 'quiz': quiz, 'questions': questions,'attempted': False}
     return render(request, 'quizzes/quizview.html', context)
 
@@ -99,7 +101,6 @@ class QuizCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 class QuizListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     model = Quiz
     context_object_name = 'quizzes'
-    ordering = ['-startafter_time']
 
     def test_func(self):
         courseid = self.kwargs['courseid']
@@ -111,4 +112,4 @@ class QuizListView(LoginRequiredMixin, UserPassesTestMixin, ListView):
     def get_queryset(self):
         courseid = self.kwargs['courseid']
         course = Course.objects.filter(pk=courseid).first()
-        return Quiz.objects.filter(course=course)
+        return Quiz.objects.filter(course=course).order_by('-startafter_time')
