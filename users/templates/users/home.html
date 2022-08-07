@@ -1,7 +1,6 @@
 {% extends "users/base.html" %}
 {% load static %} 
 {% block content %}
-    <h2>FlashLearn LMS for 2022</h2>
     {% if user.is_authenticated %}
         {% if user.type == 1 %}
             <h4>Courses Enrolled List</h4>
@@ -39,7 +38,9 @@
             {% endif %}
         {% endif %}
     {% else %}
-        <p>Flashlearn LMS was created by Santhosh Deshineni with the aim to allow all students to register and access courses by amazing teachers!</p>
+    <div class="col-lg-9">
+    <h2 style="font-family: papyrus;font-weight: 900;text-align: justify;">FlashLearn LMS v38 created by Santhosh Deshineni provides a redefined user experience that improves online teaching and learning for educators, learners and administrators.</h2>
+    </div>
         
     {% endif %}
 {% endblock content%}
