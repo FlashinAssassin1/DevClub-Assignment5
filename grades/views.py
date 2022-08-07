@@ -19,9 +19,9 @@ def gradeview(request,courseid):
     thiscoursepercents = []
     sum = 0
     number = 0
-    for grade in thiscoursegrades:
-        thiscoursepercents.append(grade.percentage)
-        sum += grade.percentage
+    for beta in thiscoursegrades:
+        thiscoursepercents.append(beta.percentage)
+        sum += beta.percentage
         number += 1
 
     average = sum/number
@@ -52,13 +52,15 @@ def gradeupload(request,courseid):
                     fields = line.split(",")
                     personid = int(fields[0][2:])
                     grade = int(fields[1])
+                    print(personid)
+                    print(grade)
                     person = CustomUser.objects.filter(pk=personid).first()
                     try:
                         persongrade = CourseGrade.objects.filter(student=person,course=course).first()
                         persongrade.grade = grade
+                        persongrade.save()
                     except:
-                        persongrade = CourseGrade.objects.create(student=person,course=course,percentage=0,grade=grade)
-                    persongrade.save()
+                        CourseGrade.objects.create(student=person,course=course,percentage=0,grade=grade)
             messages.success(request, f'Bulk Upload Complete')
             return redirect('course-detail',pk=course.pk)
     else:
