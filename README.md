@@ -1,4 +1,5 @@
 Site is deployed at [Flashlearn LMS](https://flashlearnlms.herokuapp.com/)
+(All features and some bonus features have been implemented and will be updated here)
 
 `CustomUser` model has been created for `Users` in which a user can be of three types:
 1. `Student`
@@ -51,8 +52,23 @@ Student View of Course:
 Students in Course:
 <img width="960" alt="image" src="https://user-images.githubusercontent.com/97736785/181937447-4d0f1bff-066d-4e83-9499-a485399d6842.png">
 
+Teacher View of Course:
 
+<img width="938" alt="image" src="https://user-images.githubusercontent.com/97736785/181993828-2ffc5cd3-fedd-4869-b0ab-b71d4ba33874.png">
 
+Teacher creating a quiz and adding Questions(only multiple choice):
+<img width="570" alt="image" src="https://user-images.githubusercontent.com/97736785/181992398-52f6fd18-5c0f-4b6e-b8cc-7ad47746800b.png">
+<img width="579" alt="image" src="https://user-images.githubusercontent.com/97736785/181993215-daa22f98-7838-4a36-ae68-cda758d46616.png">
+<img width="585" alt="image" src="https://user-images.githubusercontent.com/97736785/181994512-344d3dca-b4cb-44c8-8f03-68d07e2bf98a.png">
+
+Student attempting Quiz:
+
+<img width="273" alt="image" src="https://user-images.githubusercontent.com/97736785/181994555-15e9dd8b-9f2d-40dc-87bf-560b0e7b824d.png">
+
+The timer of quiz stays intact even upon refresh thanks to `sessionStorage`
+
+<img width="569" alt="image" src="https://user-images.githubusercontent.com/97736785/181994570-eb36cdac-7cac-4258-a20e-7be4f4f8e6a4.png">
+<img width="283" alt="image" src="https://user-images.githubusercontent.com/97736785/181994600-9a75e4db-338b-4a76-8382-578c855d8b12.png">
 
 
 
