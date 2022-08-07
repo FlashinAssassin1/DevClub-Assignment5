@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section">
+        
         <div class="media">
             <img class="rounded-circle account-img" src="{{ askeduser.profile.image.url }}">
             <div class="media-body">
@@ -14,6 +15,10 @@
                     Unique ID: {{ askeduser.date_joined|date:"y" }}{{ askedid }}
                     <br>
                     Last Login Time: {{ askeduser.last_login|date:"l, d F Y, f A"}}
+                    <br>
+                    {% if askeduser.pk != user.pk %}
+                    <a href="{% url 'chatlist' askeduser.pk %}" class="btn btn-outline-info">Personal Chat</a>
+                    {% endif %}
                 </p>
             </div>
         </div>
@@ -31,14 +36,5 @@
             </form>
         {% endif %}
     </div>
-    {% if askeduser.pk != user.pk %}
-        <div class="content-section">
-            <h5>Quick Links</h5>
-            <a href="{% url 'chatlist' askeduser.pk %}">Personal Messages</a>
-            <br>
-            <a href="#">Last Login</a>
-            <br>
-            <a href="#">Enrolled Courses</a>
-        </div>
-    {% endif %}
+    
 {% endblock content %}
